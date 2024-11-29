@@ -1,11 +1,16 @@
-# SKTravelMemoryGradedProject
-Graded Project on Travel Memory Application Deployment
-
 
 # Travel Memory Application Deployment (MERN Stack)
 
 ## Overview
 The Travel Memory application is built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It consists of a backend connected to a MongoDB database and a React-based frontend. This guide explains how to deploy the application on AWS with scalability and domain configuration.
+
+---
+
+Detailed Documentation is available at ![Comprehensive Documentation](MERNComprehensiveDocumentation.docx)
+---
+
+## Architecture Diagram
+   ![Architecture Diagram](MernDeployment.drawio)
 
 ---
 
@@ -21,6 +26,7 @@ The Travel Memory application is built using the MERN stack (MongoDB, Express.js
 ## 2. Backend Configuration
 1. Fork the repository: [TravelMemory GitHub](https://github.com/UnpredictablePrashant/TravelMemory).
 2. Set up an **EC2 t3.micro instance**:
+   ![EC2 Instance](images/ec2.png)
    - Add inbound rules for **ports 3000 and 3001**.
    - Connect to the instance via SSH:
      ```bash
@@ -48,7 +54,8 @@ The Travel Memory application is built using the MERN stack (MongoDB, Express.js
    ```bash
    node index.js &
    ```
-
+6. Verify Backend setup: Open `http://<EC2-public-IP>:3001` in a browser
+   ![Backend](images/backend.png)
 ---
 
 ## 3. Frontend Configuration
@@ -67,7 +74,7 @@ The Travel Memory application is built using the MERN stack (MongoDB, Express.js
    npm start &
    ```
 3. Access the frontend: `http://<EC2-public-IP>:3000`.
-
+   ![Frontend](images/frontend.png)
 ---
 
 ## 4. Backend-Frontend Connection (Nginx Reverse Proxy)
@@ -112,10 +119,13 @@ The Travel Memory application is built using the MERN stack (MongoDB, Express.js
 
 ## 5. Scaling the Application
 1. Create an AMI of the configured EC2 instance.
+   ![AMI](images/AMI.png)
 2. Set up **Elastic Load Balancer (ALB)**:
    - Distribute traffic across multiple EC2 instances.
    - Use the ALB DNS name for application access.
+   ![Load Balancer](images/LoadBalancer.png)
 3. Configure **Auto Scaling Group (ASG)** to scale instances automatically.
+   ![ASG](images/ASG.png)
 
 ---
 
@@ -123,7 +133,18 @@ The Travel Memory application is built using the MERN stack (MongoDB, Express.js
 1. Purchase a domain from GoDaddy or Namecheap.
 2. Configure the domain in Cloudflare:
    - **A Record**:
-     - Points to the EC2 instance IP for the frontend.
+      - Points to the EC2 instance IP for the frontend.
+      ![Adding ARecord](images/ARecordAddition.png)
+    
    - **CNAME Record**:
-     - Points to the ALB DNS name.
+      - Points to the ALB DNS name.
+      ![Adding CNAME](images/CNameAddition.png)
+     
+
 3. Verify connectivity by navigating to your domain.
+   - Using A Record:
+     
+      ![Website](images/ARecordWebsite.png)
+   - Using CNAME:
+     
+      ![CNAME Website](images/CNameWebsite.png)
