@@ -10,7 +10,7 @@ Detailed Documentation is available at ![Comprehensive Documentation](MERNCompre
 ---
 
 ## Architecture Diagram
-   ![Architecture Diagram](MernDeployment.drawio)
+   ![Architecture Diagram](images/Draw.io.png)
 
 ---
 
